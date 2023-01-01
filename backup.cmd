@@ -34,7 +34,7 @@ ECHO ----------------------------
 
 ECHO starting mysql-service...
 cd %mysqlPath%
-START /MIN cmd /c bin\mysqld --defaults-file=my.ini --standalone
+START "mysql-service (please close after batch script)" /MIN cmd /c bin\mysqld --defaults-file=my.ini --standalone
 
 timeout /t 5 /nobreak > NUL
 
