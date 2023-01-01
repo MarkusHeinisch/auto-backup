@@ -8,6 +8,11 @@ SET destDir=D:\%dateFormat%
 SET mysqlPath=C:\dev\wamp\bin\mysql\mysql5.7.40
 SET mysqlUser=root
 SET mysqlPass=
+SET startTime=%time%
+
+ECHO Start of batch program: %startTime:~0,8%
+
+ECHO ----------------------------
 
 IF EXIST %destDir% (
 	ECHO destination directory already exists!
@@ -70,5 +75,5 @@ ECHO DONE
 
 :end
 ECHO ----------------------------
-ECHO End of batch program.
+ECHO End of batch program: %time:~0,8%
 PAUSE
