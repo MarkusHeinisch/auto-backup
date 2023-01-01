@@ -2,6 +2,7 @@
 
 SET zipApp=%cd%"\7zip\7z.exe" a -bso0 -bsp1
 SET htdocsDir=C:\dev\wamp\www
+SET projectsDir=C:\dev\_DATA
 SET dateFormat=%date:~-4%-%date:~-7,2%-%date:~-10,2%
 SET destDir=D:\%dateFormat%
 
@@ -17,6 +18,16 @@ ECHO create destination directory...
 IF NOT EXIST %destDir% mkdir %destDir%
 IF NOT EXIST %destDir% (
 	ECHO ERROR: destination directory
+	goto :end
+)
+ECHO DONE
+
+ECHO ----------------------------
+
+ECHO copy projects...
+%zipApp% %destDir%\%dateFormat%-projects.zip %projectsDir% 2>nul
+if %ERRORLEVEL% NEQ 0 (
+	ECHO ERROR: zip projects
 	goto :ende
 )
 ECHO DONE
@@ -27,11 +38,12 @@ ECHO copy htdocs...
 %zipApp% %destDir%\%dateFormat%-htdocs.zip %htdocsDir% 2>nul
 if %ERRORLEVEL% NEQ 0 (
 	ECHO ERROR: zip htdocs
-	goto :ende
+	goto :end
 )
 ECHO DONE
 
 ECHO ----------------------------
 
-ECHO BACKUP DONE
+:end
+ECHO End of batch program.
 PAUSE
